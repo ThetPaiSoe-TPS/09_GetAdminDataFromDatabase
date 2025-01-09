@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\TrendPostController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Rules\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::middleware([
     //admin
     Route::get('dashboard', [ProfilesController::class, 'index'])->name('dashboard');
     Route::post('admin/update', [ProfilesController::class, 'updateAdminAccount'])->name('admin#update');
+    Route::get('admin/changePassword', [ProfilesController::class, 'directChangePassword'])->name('admin#directChangePassword');
+    Route::post('admin/changePassword', [ProfilesController::class, 'changePassword'])->name('admin#changePassword');
     // admin list
     Route::get('admin/list', [ListController::class, 'index'])->name('admin#list');
     // admin category
@@ -42,4 +45,8 @@ Route::middleware([
     Route::get('admin/post', [PostController::class, 'index'])->name('admin#post');
     // admin list
     Route::get('admin/trendPost', [TrendPostController::class, 'index'])->name('admin#trendPost');
+    //admin delete
+    Route::get('admin/delete/{id}', [ListController::class, 'deleteAccount'])->name('admin#accountDelete');
+    //data searching
+    Route::post('admin/listSearch', [ListController::class, 'listSearch'])->name('admin#listSearch');
 });

@@ -89,7 +89,7 @@
                                             <button type="submit" class="btn bg-dark text-white">Update</button>
                                         </div>
                                         <div class="col">
-                                            <a href="">Change Password</a>
+                                            <a href="{{route('admin#directChangePassword')}}">Change Password</a>
                                         </div>
                                     </div>
                                 </form>
