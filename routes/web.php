@@ -40,7 +40,9 @@ Route::middleware([
     // admin list
     Route::get('admin/list', [ListController::class, 'index'])->name('admin#list');
     // admin category
-    Route::get('admin/category', [CategoryController::class, 'index'])->name('admin#category');
+    Route::get('category', [CategoryController::class, 'index'])->name('admin#category');
+    //create category
+    Route::post('admin/category', [CategoryController::class, 'createCategory'])->name('admin#createCategory');
     // admin post
     Route::get('admin/post', [PostController::class, 'index'])->name('admin#post');
     // admin list
