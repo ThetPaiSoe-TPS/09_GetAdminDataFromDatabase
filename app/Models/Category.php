@@ -10,4 +10,8 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable= ['category_id', 'title', 'description'];
+
+    public function delete(){
+        return parent::delete();
+    }
 }

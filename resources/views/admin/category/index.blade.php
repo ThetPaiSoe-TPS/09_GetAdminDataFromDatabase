@@ -7,6 +7,11 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if (session('deleteSuccess'))
+            <div class="alert alert-success">
+                {{ session('deleteSuccess') }}
+            </div>
+        @endif
         <div class="col-md-5">
             <div class="card">
                 <div class="card-header">{{ __('Create Category') }}</div>
@@ -66,14 +71,22 @@
                     <h3 class="card-title">Category Table</h3>
 
                     <div class="card-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                        <div class="input-group input-group-sm" style="width: 200px;">
+                            <form action="{{ route('admin#categorySearch') }}" method="POST">
+                                @csrf
 
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
+                                <div class="input-group">
+                                    <input type="text" name="categorySearch" class="form-control float-right"
+                                        placeholder="Search">
+
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -83,7 +96,7 @@
                         <thead>
                             <tr>
                                 <th>Category ID</th>
-                                <th>Customer Name</th>
+                                <th>Category Name</th>
                                 <th>Description</th>
                                 <th>Created at</th>
                                 <th></th>
@@ -99,8 +112,12 @@
 
                                     <td>
                                         <button class="btn btn-sm bg-dark text-white"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-sm bg-danger text-white"><i
-                                                class="fas fa-trash-alt"></i></button>
+                                        <a href="{{ route('admin#deleteCategory', $item['category_id']) }}">
+                                            <button class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </a>
+
+
                                     </td>
                                 </tr>
                             @endforeach

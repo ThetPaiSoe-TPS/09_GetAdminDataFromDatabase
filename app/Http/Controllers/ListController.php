@@ -13,18 +13,6 @@ class ListController extends Controller
         return view('admin.list.index', compact('userData'));
     }
 
-    // public function deleteAccount($id){
-    //     $user= User::find($id);
-    //     $currentId= Auth::id();
-    //     if ($currentId != $id) {
-    //         $user->delete();
-    //         return back()->with(['deleteSuccess'=> 'User Account Deleted!']);
-    //     }
-    //     else{
-    //         return back()->with(['deleteError'=> 'Unable to delete account.']);
-    //     }
-    // }
-
     public function deleteAccount($id)
     {
         User::find($id)->delete();
@@ -50,4 +38,6 @@ class ListController extends Controller
         // $userData= User::where('name', $request->adminSearch)->get();
         // return view('admin.list.index', compact('userData'));
     }
+
+    
 }

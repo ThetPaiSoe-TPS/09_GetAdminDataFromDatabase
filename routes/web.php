@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
+use Laravel\Jetstream\Rules\Role;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\TrendPostController;
-use Illuminate\Support\Facades\Route;
-use Laravel\Jetstream\Rules\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +43,8 @@ Route::middleware([
     Route::get('category', [CategoryController::class, 'index'])->name('admin#category');
     //create category
     Route::post('admin/category', [CategoryController::class, 'createCategory'])->name('admin#createCategory');
+    //category search
+    Route::post('admin/categorySearch', [CategoryController::class, 'categorySearch'])->name('admin#categorySearch');
     // admin post
     Route::get('admin/post', [PostController::class, 'index'])->name('admin#post');
     // admin list
@@ -51,4 +53,6 @@ Route::middleware([
     Route::get('admin/delete/{id}', [ListController::class, 'deleteAccount'])->name('admin#accountDelete');
     //data searching
     Route::post('admin/listSearch', [ListController::class, 'listSearch'])->name('admin#listSearch');
+    //admin delete
+    Route::get('admin/deleteCategory/{id}', [CategoryController::class, 'deleteCategory'])->name('admin#deleteCategory');
 });
