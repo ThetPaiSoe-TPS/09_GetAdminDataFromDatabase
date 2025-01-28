@@ -47,6 +47,8 @@ Route::middleware([
     Route::post('admin/categorySearch', [CategoryController::class, 'categorySearch'])->name('admin#categorySearch');
     // admin post
     Route::get('admin/post', [PostController::class, 'index'])->name('admin#post');
+    // admin post create
+    Route::post('admin/createPost', [PostController::class, 'createPost'])->name('admin#createPost');
     // admin list
     Route::get('admin/trendPost', [TrendPostController::class, 'index'])->name('admin#trendPost');
     //admin delete
@@ -55,4 +57,7 @@ Route::middleware([
     Route::post('admin/listSearch', [ListController::class, 'listSearch'])->name('admin#listSearch');
     //admin delete
     Route::get('admin/deleteCategory/{id}', [CategoryController::class, 'deleteCategory'])->name('admin#deleteCategory');
+    // admin post edit
+    Route::get('admin/posts/{id}/edit', [PostController::class, 'edit'])->name('admin#editPost');
+    Route::delete('admin/posts/{id}', [PostController::class, 'destroy'])->name('admin.deletePost');
 });

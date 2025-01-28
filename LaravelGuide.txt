@@ -1,0 +1,7 @@
+	remove all database tables and readd
+php artisan migrate:fresh
+	page expire show
+there is no data
+	file sending in form
+enctype, button(submit), @csrf
+	errors=> App\Http\Controllers\Post=> import require
