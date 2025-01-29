@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post; 
+use Illuminate\Support\Facades\Storage; // Import Storage facade
+
 
 class PostController extends Controller
 {
@@ -51,9 +53,12 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        $post = Post::where('post_id', $id)->firstOrFail(); 
-        $post->delete(); // Delete the post
-
-        return redirect()->route('admin.post.index')->with('success', 'Post deleted successfully.'); // Redirect with success message
+        $post = Post::where('post_id', $id)->first();
+        if($post->image){
+            Storage::disk('public')->delete($post->image); // Delete the image from storage
+        }
+        Post::where('post_id', $id)->delete(); // Delete the post
+        
+        return redirect()->route('admin#post')->with('success', 'Post deleted successfully.'); // Redirect with success message
     }
 }

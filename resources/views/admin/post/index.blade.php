@@ -4,14 +4,14 @@
     <div class="row">
         <div class="col-md-3">
             <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Create Post</h3>
-                </div>
                 @if (session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
                 @endif
+                <div class="card-header">
+                    <h3 class="card-title">Create Post</h3>
+                </div>
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -76,8 +76,8 @@
                                 <th>Post ID</th>
                                 <th>Post Title</th>
                                 <th>Description</th>
-                                <th>Created At</th>
                                 <th>Image</th>
+                                <th>Created at</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

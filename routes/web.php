@@ -59,5 +59,5 @@ Route::middleware([
     Route::get('admin/deleteCategory/{id}', [CategoryController::class, 'deleteCategory'])->name('admin#deleteCategory');
     // admin post edit
     Route::get('admin/posts/{id}/edit', [PostController::class, 'edit'])->name('admin#editPost');
-    Route::delete('admin/posts/{id}', [PostController::class, 'destroy'])->name('admin.deletePost');
+    Route::delete('/admin/posts/{post}', [PostController::class, 'destroy'])->name('admin.deletePost');
 });
