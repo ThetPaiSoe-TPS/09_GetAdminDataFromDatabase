@@ -47,8 +47,11 @@ class PostController extends Controller
 
     public function edit($id)
     {
-        $post = Post::findOrFail($id); // Fetch the post by ID
-        return view('admin#editPost', compact('post')); // Return the edit view with the post data
+        $post = Post::where('post_id', $id)->first();
+        $categories = Category::get();
+        // $categoryTitles = Category::pluck('title');
+        $posts= Post::all();
+        return view('admin.post.editPost', compact('post', 'categories', 'posts'));
     }
 
     public function destroy($id)
