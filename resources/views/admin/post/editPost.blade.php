@@ -29,8 +29,9 @@
                     </div>
                 @endif
                 <div class="card-body">
-                    <form action="{{route('admin#createPost')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin#updatePost', $post->post_id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('POST')
                         <div class="form-group">
                             <label for="title">Post Title</label>
                             <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Enter Post Title" value="{{ $post->title, old('title') }}">
@@ -95,7 +96,8 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-primary">Change</button>
+                        <button type="submit" class="btn btn-primary">Update Post</button>
+                    <a href="{{ route('admin#updatePost', $post->post_id) }}" class="btn btn-sm btn-primary">Update</a>
                     </form>
                 </div>
             </div>

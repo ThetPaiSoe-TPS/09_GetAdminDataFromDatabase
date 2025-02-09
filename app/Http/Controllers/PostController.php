@@ -54,6 +54,27 @@ class PostController extends Controller
         return view('admin.post.editPost', compact('post', 'categories', 'posts'));
     }
 
+    public function update(Request $request, $id)
+    {
+        $validatedData = $this->validatePostRequest($request);
+
+        $post = Post::where('post_id', $id);
+        $oldImage = $post->first()->image;
+        $imagePath = $request->hasFile('image') ? $request->file('image')->storeAs('postImage', now()->timestamp . '_' . $request->file('image')->getClientOriginalName(), 'public') : null;
+        
+        if($oldImage && $request->hasFile('image')){
+            Storage::disk('public')->delete($oldImage); // Delete the old image from storage
+        }
+        $post->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' => $request->hasFile('image') ? $imagePath : $oldImage,
+            'category_id' => $request->postCategory,
+        ]);
+
+        return redirect()->route('admin#post')->with('success', 'Post updated successfully.');
+    }
+
     public function destroy($id)
     {
         $post = Post::where('post_id', $id)->first();
